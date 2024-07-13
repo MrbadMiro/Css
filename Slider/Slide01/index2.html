@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @keyframes slideContent {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+        }
+
+        @keyframes slideImage {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+        }
+
+        .animate-slideContent {
+            animation: slideContent 0.4s linear 0.6s backwards;
+        }
+
+        .animate-slideImage {
+            animation: slideImage 0.4s linear;
+        }
+    </style>
+</head>
+<body class="font-nunito">
+    <div class="relative">
+        <div class="slide-container active flex items-center flex-wrap gap-4 p-5 md:p-9 min-h-screen">
+            <div class="content flex-1 animate-slideContent">
+                <h3 class="text-3xl md:text-4xl text-gray-800">01. Website Layout</h3>
+                <p class="text-base md:text-lg text-gray-600 py-2">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quo
+                    maxime nisi ratione eligendi veritatis blanditiis perspiciatis
+                    aut, rem, cum, molestiae iste repellendus nesciunt sequi
+                    repudiandae exercitationem dolor officiis? Nulla?
+                </p>
+                <a href="#" class="btn bg-gray-600 text-white text-lg px-10 py-2 mt-2 inline-block hover:bg-gray-800">learn more</a>
+            </div>
+            <div class="image flex-1 animate-slideImage">
+                <img src="images/img1.svg" alt="" class="w-full" />
+            </div>
+        </div>
+        <div class="slide-container flex items-center flex-wrap gap-4 p-5 md:p-9 min-h-screen hidden">
+            <div class="content flex-1 animate-slideContent">
+                <h3 class="text-3xl md:text-4xl text-gray-800">02. Website Layout</h3>
+                <p class="text-base md:text-lg text-gray-600 py-2">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quo
+                    maxime nisi ratione eligendi veritatis blanditiis perspiciatis
+                    aut, rem, cum, molestiae iste repellendus nesciunt sequi
+                    repudiandae exercitationem dolor officiis? Nulla?
+                </p>
+                <a href="#" class="btn bg-gray-600 text-white text-lg px-10 py-2 mt-2 inline-block hover:bg-gray-800">learn more</a>
+            </div>
+            <div class="image flex-1 animate-slideImage">
+                <img src="images/img2.svg" alt="" class="w-full" />
+            </div>
+        </div>
+        <div class="slide-container flex items-center flex-wrap gap-4 p-5 md:p-9 min-h-screen hidden">
+            <div class="content flex-1 animate-slideContent">
+                <h3 class="text-3xl md:text-4xl text-gray-800">03. Website Layout</h3>
+                <p class="text-base md:text-lg text-gray-600 py-2">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quo
+                    maxime nisi ratione eligendi veritatis blanditiis perspiciatis
+                    aut, rem, cum, molestiae iste repellendus nesciunt sequi
+                    repudiandae exercitationem dolor officiis? Nulla?
+                </p>
+                <a href="#" class="btn bg-gray-600 text-white text-lg px-10 py-2 mt-2 inline-block hover:bg-gray-800">learn more</a>
+            </div>
+            <div class="image flex-1 animate-slideImage">
+                <img src="images/img3.svg" alt="" class="w-full" />
+            </div>
+        </div>
+        <div id="prev" class="absolute top-1/2 left-5 transform -translate-y-1/2 bg-gray-600 text-white h-12 w-10 leading-12 text-center text-xl font-bold cursor-pointer" onclick="prev()"> &lt; </div>
+        <div id="next" class="absolute top-1/2 right-5 transform -translate-y-1/2 bg-gray-600 text-white h-12 w-10 leading-12 text-center text-xl font-bold cursor-pointer" onclick="next()"> &gt; </div>
+    </div>
+
+    <script>
+        let slides = document.querySelectorAll('.slide-container');
+        let index = 0;
+
+        function next() {
+            slides[index].classList.remove('block');
+            slides[index].classList.add('hidden');
+            index = (index + 1) % slides.length;
+            slides[index].classList.remove('hidden');
+            slides[index].classList.add('block');
+        }
+
+        function prev() {
+            slides[index].classList.remove('block');
+            slides[index].classList.add('hidden');
+            index = (index - 1 + slides.length) % slides.length;
+            slides[index].classList.remove('hidden');
+            slides[index].classList.add('block');
+        }
+
+        setInterval(next, 3000);
+    </script>
+</body>
+</html>
